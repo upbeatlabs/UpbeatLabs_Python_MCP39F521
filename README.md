@@ -20,7 +20,10 @@ If you are a more advanced user, you have a wide range of functionality availabl
 
 Enable I2C on the Raspberry Pi
 
-Refer to Dr. Wattson User Manual to set up Dr. Wattson
+Refer to [Dr. Wattson User Manual](https://github.com/upbeatlabs/drwattson/blob/master/DrWattsonUserManual.pdf) to set up Dr. Wattson
+
+Tested and works with Python 2.7 and Python 3.x on Raspberry Pi (use
+pip3 or python3 for Python 3 install)
 
 ## Installing
 
