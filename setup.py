@@ -21,7 +21,7 @@ classifiers = [
     ]
 
 setup(name='UpbeatLabs_MCP39F521',
-      version='2.0',
+      version='2.0.0',
       description='Python library to use with Dr. Wattson Energy Monitoring Board and other MCP39F521 based boards',
       long_description=long_description,
       author='Sridhar Rajagopal',
