@@ -115,8 +115,8 @@ def main():
 # gracefully exit without a big exception message if possible
 def ctrl_c_handler(signal, frame):
     print('Goodbye!')
-    disp.clear()
-    disp.display()
+    disp.fill(0)
+    disp.show()
     exit(0)
 
 signal.signal(signal.SIGINT, ctrl_c_handler)
