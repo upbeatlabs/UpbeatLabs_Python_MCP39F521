@@ -33,32 +33,33 @@ import subprocess as sp
 import time
 import signal
 
-import Adafruit_GPIO.SPI as SPI
-import Adafruit_SSD1306
+import board
+import digitalio 
+import adafruit_ssd1306
 
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-# Raspberry Pi pin configuration:
-RST = 12
-# Note the following are only used with SPI:
-DC = 18
-SPI_PORT = 0
-SPI_DEVICE = 0
+WIDTH = 128
+HEIGHT = 64
 
-disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST, dc=DC, spi=SPI.SpiDev(SPI_PORT, SPI_DEVICE, max_speed_hz=8000000))
+# Raspberry Pi pin configuration:
+RST = digitalio.DigitalInOut(board.D12)
+# Note the following are only used with SPI:
+DC = digitalio.DigitalInOut(board.D18)
+CS = digitalio.DigitalInOut(board.D8)
+
+spi = board.SPI()
+disp = adafruit_ssd1306.SSD1306_SPI(WIDTH, HEIGHT, spi, DC, RST, CS)
 
 wattson = UpbeatLabs_MCP39F521.UpbeatLabs_MCP39F521()
 
 def main():
 
-    # Initialize library.
-    disp.begin()
-
-    # Clear display.
-    disp.clear()
-    disp.display()
+    # Clear display
+    disp.fill(0)
+    disp.show()
 
     # Create blank image for drawing.
     # Make sure to create image with mode '1' for 1-bit color.
@@ -105,8 +106,9 @@ def main():
 
 
         # Display image.
-        disp.image(image)
-        disp.display()   
+        imageRot = image.transpose(Image.ROTATE_180)
+        disp.image(imageRot)
+        disp.show()   
         time.sleep(1); 
 
 
